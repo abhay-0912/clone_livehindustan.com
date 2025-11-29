@@ -93,6 +93,53 @@ npm start
 
 Visit http://localhost:3000
 
+## 🚀 Deployment on Netlify
+
+### Quick Deploy
+
+1. **Push to GitHub** (Already done!)
+   ```bash
+   git add .
+   git commit -m "Ready for deployment"
+   git push origin main
+   ```
+
+2. **Deploy on Netlify**
+   - Visit [Netlify](https://app.netlify.com)
+   - Click "Add new site" → "Import an existing project"
+   - Connect your GitHub account
+   - Select repository: `abhay-0912/clone_livehindustan.com`
+   - Build settings (auto-detected):
+     - Build command: `npm run build`
+     - Publish directory: `.next`
+   - Click "Deploy site"
+
+3. **Done!** Your site will be live at `https://your-site-name.netlify.app`
+
+### Manual Netlify CLI Deploy
+
+```bash
+# Install Netlify CLI
+npm install -g netlify-cli
+
+# Login to Netlify
+netlify login
+
+# Deploy
+netlify deploy --prod
+```
+
+### Configuration Files Added
+- ✅ `netlify.toml` - Netlify build configuration
+- ✅ `.nvmrc` - Node version specification
+- ✅ `.gitignore` - Updated for Netlify
+
+### Environment Variables (Optional)
+If using real APIs in the future, add environment variables in Netlify dashboard:
+- Go to Site settings → Environment variables
+- Add your API keys
+
+
 ## 🎨 Design Decisions
 
 ### Why ISR (Incremental Static Regeneration)?
@@ -166,6 +213,14 @@ This project was built with AI assistance. See `SUBMISSION.md` for detailed brea
 - **Styling**: Tailwind CSS
 - **Fonts**: Geist Sans & Mono
 - **Data**: Mock JSON (easily replaceable with real API)
+- **Hosting**: Netlify (with Next.js plugin)
+
+## 🌐 Live Demo
+
+**Deployed on Netlify**: [View Live Site](https://your-site-name.netlify.app)
+
+Repository: [GitHub - clone_livehindustan.com](https://github.com/abhay-0912/clone_livehindustan.com)
+
 
 ## 📝 License
 
