@@ -217,7 +217,7 @@ This project was built with AI assistance. See `SUBMISSION.md` for detailed brea
 
 ## 🌐 Live Demo
 
-**Deployed on Netlify**: [View Live Site](https://your-site-name.netlify.app)
+**Deployed on Netlify**: [View Live Site](https://clonelivehindustan.netlify.app/)
 
 Repository: [GitHub - clone_livehindustan.com](https://github.com/abhay-0912/clone_livehindustan.com)
 
