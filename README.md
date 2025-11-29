@@ -1,36 +1,176 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Live Hindustan - News Portal
 
-## Getting Started
+## Project Overview
+A modern, responsive news portal built with Next.js 15, TypeScript, and Tailwind CSS, inspired by the LiveHindustan website. This project demonstrates advanced Next.js features including ISR, dynamic routing, and SEO optimization.
 
-First, run the development server:
+## 🚀 Features
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+### Core Features
+- ✅ Responsive news portal with mobile-first design
+- ✅ Hero section with featured articles
+- ✅ Multiple news card layouts (default, horizontal, compact)
+- ✅ Category-based news filtering
+- ✅ Dynamic article pages with related articles
+- ✅ Sticky navigation with mobile menu
+- ✅ Loading and error states
+- ✅ SEO optimization with meta tags
+
+### Next.js Features Used
+1. **ISR (Incremental Static Regeneration)**: Chosen for optimal balance between performance and fresh content
+   - Home page revalidates every 60 seconds
+   - Article pages revalidate every 5 minutes
+   - Category pages revalidate every 60 seconds
+
+2. **Dynamic Routing**: `/article/[id]` and `/category/[slug]` routes
+   - Pre-rendered at build time with `generateStaticParams`
+   - Fallback handling for missing pages
+
+3. **Image Optimization**: Using Next.js `<Image>` component
+   - Automatic optimization and lazy loading
+   - Responsive image sizing
+   - Priority loading for hero images
+
+4. **SEO Features**:
+   - Custom metadata for each page
+   - OpenGraph tags for social sharing
+   - Structured data ready
+   - Semantic HTML
+
+## 📁 Project Structure
+
+```
+news-portal/
+├── app/
+│   ├── layout.tsx                 # Root layout with Navbar & Footer
+│   ├── page.tsx                   # Home page with ISR
+│   ├── article/
+│   │   └── [id]/
+│   │       ├── page.tsx           # Dynamic article pages
+│   │       └── not-found.tsx      # 404 handling
+│   └── category/
+│       └── [slug]/
+│           └── page.tsx           # Category pages
+├── components/
+│   ├── Navbar.tsx                 # Sticky navigation with mobile menu
+│   ├── Hero.tsx                   # Featured article hero section
+│   ├── NewsCard.tsx               # Reusable news card (3 variants)
+│   ├── Footer.tsx                 # Site footer
+│   ├── LoadingSpinner.tsx         # Loading state component
+│   ├── ErrorMessage.tsx           # Error state component
+│   └── NoDataMessage.tsx          # Empty state component
+├── lib/
+│   ├── api.ts                     # Data fetching functions
+│   ├── mockData.ts                # Mock news articles
+│   └── seo.ts                     # SEO helper functions
+└── types/
+    └── article.ts                 # TypeScript interfaces
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## 🚀 Getting Started
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### Prerequisites
+- Node.js 18+ 
+- npm or yarn
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+### Installation & Running
 
-## Learn More
+```bash
+# Navigate to project
+cd news-portal
 
-To learn more about Next.js, take a look at the following resources:
+# Install dependencies
+npm install
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+# Run development server
+npm run dev
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+# Build for production
+npm run build
 
-## Deploy on Vercel
+# Start production server
+npm start
+```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+Visit http://localhost:3000
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## 🎨 Design Decisions
+
+### Why ISR (Incremental Static Regeneration)?
+
+**Chosen over:**
+- ❌ `getServerSideProps`: Too slow, generates pages on every request
+- ❌ Pure static with `getStaticProps`: No fresh content without rebuild
+- ✅ **ISR**: Perfect balance!
+
+**Benefits:**
+1. **Performance**: Pages served instantly from cache
+2. **Freshness**: Auto-revalidates in background
+3. **Scalability**: Handles traffic spikes gracefully
+4. **SEO**: Fully static HTML for crawlers
+
+## 🧪 Testing Scenarios
+
+### Test Cases
+
+1. **Image Fallback Test**
+   - Remove image URL from an article
+   - Should display placeholder
+
+2. **Empty State Test**
+   - Return empty array from API
+   - Should show "No news available"
+
+3. **Long Title Test**
+   - Add very long title (100+ chars)
+   - Should truncate with ellipsis
+
+4. **Category Filter Test**
+   - Click different categories
+   - Should filter articles correctly
+
+5. **Responsive Test**
+   - Resize browser window
+   - All layouts should adapt
+
+## 📚 Documentation
+
+- **DESIGN.md**: Comprehensive design document with wireframes, layout decisions, and architecture
+- **SUBMISSION.md**: Complete assignment submission with all requirements and AI reflection
+
+## 🤖 AI Usage
+
+This project was built with AI assistance. See `SUBMISSION.md` for detailed breakdown of:
+- What AI helped with (70% component boilerplate, 60% styling)
+- Where AI was wrong (type safety, image optimization)
+- Custom modifications beyond AI suggestions
+- Verification methods used
+
+## 📈 Performance Optimizations
+
+- Next.js Image component for automatic optimization
+- ISR for pre-rendered pages
+- Tailwind CSS purging
+- Code splitting (automatic)
+- Font optimization
+
+## 📱 Responsive Design
+
+- **Mobile**: < 768px (1 column, hamburger menu)
+- **Tablet**: 768px - 1024px (2 columns)
+- **Desktop**: > 1024px (3 columns with sidebar)
+
+## 🔧 Technologies
+
+- **Framework**: Next.js 15 (App Router)
+- **Language**: TypeScript
+- **Styling**: Tailwind CSS
+- **Fonts**: Geist Sans & Mono
+- **Data**: Mock JSON (easily replaceable with real API)
+
+## 📝 License
+
+This is a student assignment project.
+
+---
+
+**Built with ❤️ using Next.js 15, TypeScript, and Tailwind CSS**
